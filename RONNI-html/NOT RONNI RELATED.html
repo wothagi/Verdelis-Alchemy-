@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Verdélis Alchemy</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins&family=Dancing+Script&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #0f0f0f;
+    color: #f5f5f5;
+}
+
+/* NAVBAR */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: #111;
+    border-bottom: 1px solid #333;
+}
+
+nav h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 28px;
+    color: #d4af37;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+nav ul li {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+nav ul li:hover {
+    color: #d4af37;
+}
+
+/* HERO */
+.hero {
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                url('https://images.unsplash.com/photo-1526318472351-bc6f6c9b4d4e');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero h2 {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 18px;
+    color: #ccc;
+}
+
+/* PRODUCTS */
+.products {
+    padding: 50px;
+}
+
+.products h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #d4af37;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.3s;
+    border: 1px solid #333;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    border-color: #d4af37;
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.card h3 {
+    margin: 15px 0 5px;
+}
+
+.card p {
+    font-size: 14px;
+    color: #aaa;
+}
+
+.price {
+    margin: 10px 0;
+    color: #d4af37;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    background: #d4af37;
+    color: black;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #b8962e;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid #333;
+    margin-top: 40px;
+    color: #aaa;
+}
+</style>
+
+</head>
+
+<body>
+
+<nav>
+    <h1>Verdélis Alchemy</h1>
+    <ul>
+        <li>Home</li>
+        <li>Shop</li>
+        <li>About</li>
+        <li>Contact</li>
+    </ul>
+</nav>
+
+<section class="hero">
+    <div>
+        <h2>Ancient Remedies & Mystical Goods</h2>
+        <p>Crafted through the secrets of alchemy</p>
+    </div>
+</section>
+
+<section class="products">
+    <h2>Featured Items</h2>
+
+    <div class="product-grid">
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1604908176997-4311cddc52c4">
+            <h3>Elixir of Vitality</h3>
+            <p>Restores energy and life essence.</p>
+            <div class="price">₱250</div>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1582719478173-7b1b4c1fdb44">
+            <h3>Philosopher’s Dust</h3>
+            <p>A rare powder of transformation.</p>
+            <div class="price">₱500</div>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba">
+            <h3>Moon Essence</h3>
+            <p>Captured light of the full moon.</p>
+            <div class="price">₱350</div>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1602524209182-3a6c57d205c3">
+            <h3>Herbal Concoction</h3>
+            <p>Ancient blend of healing herbs.</p>
+            <div class="price">₱180</div>
+            <button>Add to Cart</button>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Verdélis Alchemy | Crafted for knowledge & practice</p>
+</footer>
+
+</body>
+</html>

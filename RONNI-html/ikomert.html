@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Verdélis Perfume</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins&family=Dancing+Script&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7f5;
+    color: #2f3e34;
+}
+
+header {
+    background: #dbe7e1;
+    padding: 1.2rem 8%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.logo-main {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.2rem;
+    color: #3a5a40;
+}
+
+.logo-sub {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: #588157;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 25px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #344e41;
+    font-weight: 600;
+}
+
+nav ul li a:hover {
+    color: #588157;
+}
+
+.cart {
+    font-weight: bold;
+    color: #3a5a40;
+}
+
+.hero {
+    height: 90vh;
+    background: linear-gradient(rgba(244,247,245,0.6), rgba(244,247,245,0.6)),
+    url('https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=1920');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    padding: 0 8%;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.hero-content h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    color: #3a5a40;
+}
+
+.hero-content p {
+    margin: 15px 0;
+    color: #4f6f5d;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.btn-primary {
+    background: #588157;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #3a5a40;
+}
+
+.btn-secondary {
+    border: 2px solid #588157;
+    color: #588157;
+}
+
+.btn-secondary:hover {
+    background: #eaf1ec;
+}
+
+section {
+    padding: 80px 8%;
+}
+
+.products {
+    text-align: center;
+}
+
+.products h2 {
+    margin-bottom: 40px;
+    color: #3a5a40;
+}
+
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.product-card {
+    background: white;
+    padding: 20px;
+    width: 260px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+}
+
+.product-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.product-card h3 {
+    margin-top: 10px;
+    color: #3a5a40;
+}
+
+.product-card p {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.price {
+    margin: 10px 0;
+    font-weight: bold;
+    color: #588157;
+}
+
+.about {
+    background: #eaf1ec;
+    text-align: center;
+}
+
+.about h2 {
+    margin-bottom: 15px;
+}
+
+.about p {
+    max-width: 600px;
+    margin: auto;
+    color: #4f6f5d;
+}
+
+footer {
+    background: #3a5a40;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <div class="logo">
+            <span class="logo-main">Verdélis</span>
+            <span class="logo-sub">ACAIN</span>
+        </div>
+
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#products">Collection</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+
+        <div class="cart">
+            Cart: <span id="cart-count">0</span>
+        </div>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Verdélis</h1>
+        <p>Where scent meets serenity. Discover fragrances inspired by nature’s quiet beauty.</p>
+        <a href="#products" class="btn btn-primary">Shop Collection</a>
+        <a href="#about" class="btn btn-secondary">Discover More</a>
+    </div>
+</section>
+
+<section class="products" id="products">
+    <h2>Our Collection</h2>
+
+    <div class="product-grid">
+
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539">
+            <h3>Verdant Bloom</h3>
+            <p>A graceful blend of rose petals and soft greenery.</p>
+            <div class="price">₱1,499</div>
+            <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de">
+            <h3>Sage Whisper</h3>
+            <p>A calming scent that feels like a breath of fresh air.</p>
+            <div class="price">₱1,299</div>
+            <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1585386959984-a41552231658">
+            <h3>Emerald Veil</h3>
+            <p>Deep, woody tones wrapped in subtle sweetness.</p>
+            <div class="price">₱1,799</div>
+            <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519">
+            <h3>Lumière Petal</h3>
+            <p>Light floral notes kissed by soft citrus.</p>
+            <div class="price">₱1,399</div>
+            <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f">
+            <h3>Olive Mist</h3>
+            <p>Earthy and airy, like morning dew on leaves.</p>
+            <div class="price">₱1,599</div>
+            <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd">
+            <h3>Velour Night</h3>
+            <p>A smooth, sensual scent for quiet evenings.</p>
+            <div class="price">₱1,899</div>
+            <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+        </div>
+
+    </div>
+</section>
+
+<section class="about" id="about">
+    <h2>Our Story</h2>
+    <p>
+        At Verdélis, we believe fragrance is more than scent—it is memory, mood, and identity.
+        Each bottle is crafted with inspiration from nature’s quiet beauty.
+    </p>
+</section>
+
+<footer>
+    <p>© 2026 Verdélis Perfume | ACAIN</p>
+</footer>
+
+<script>
+let cartCount = 0;
+
+function addToCart() {
+    cartCount++;
+    document.getElementById("cart-count").innerText = cartCount;
+}
+</script>
+
+</body>
+</html>

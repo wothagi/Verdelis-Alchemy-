@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrated Web App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            transition: background-color 0.4s, color 0.4s;
+            background-color: #f4f4f4;
+            color: #000000;
+        }
+
+        body.dark-mode {
+            background-color: #050505;
+            color: #ffffff;
+        }
+
+        #bg-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .floating-ember {
+    position: absolute;
+    bottom: -50px; /* Start slightly off-screen */
+    background-color: rgba(199, 184, 149, 0.9); /* Increased Opacity */
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(1px);
+    animation: floatUp linear infinite;
+    /* Multi-layered glow for high visibility */
+    box-shadow: 0 0 15px rgba(199, 184, 149, 0.8), 
+                0 0 30px rgba(199, 184, 149, 0.4);
+}
+
+@keyframes floatUp {
+    0% { 
+        transform: translateY(0) rotate(0deg); 
+        opacity: 0; 
+    }
+    10% { 
+        opacity: 0.9; /* Quick fade in */
+    }
+    90% { 
+        opacity: 0.9; 
+    }
+    100% { 
+        transform: translateY(-110vh) rotate(360deg); 
+        opacity: 0; /* Fade out at the very top */
+    }
+}
+
+        .main-wrapper {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        body.dark-mode .main-wrapper {
+            background-color: rgba(30, 30, 30, 0.9);
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .layout-table {
+            border-collapse: collapse;
+            width: 700px;
+        }
+
+        .layout-table td {
+            vertical-align: top;
+            padding: 20px;
+            width: 50%;
+        }
+
+        .left-panel { border-right: 1px solid #ddd; }
+        body.dark-mode .left-panel { border-right: 1px solid #444; }
+
+        .toggle-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 80px;
+            height: 34px;
+        }
+
+        .switch input { opacity: 0; width: 0; height: 0; }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0 10px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px; width: 26px;
+            left: 4px; bottom: 4px;
+            background-color: #121212;
+            transition: .4s;
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .slider-text {
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+            user-select: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        input:checked + .slider { 
+            background-color: #ffffff; 
+            justify-content: flex-start;
+        }
+        
+        input:checked + .slider:before { transform: translateX(46px); }
+        input:checked + .slider .slider-text { color: black; }
+
+        h1 { font-size: 20px; text-align: center; margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 13px; }
+        input[type="number"], input[type="text"], select { width: 100%; padding: 8px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        .button-group { display: flex; justify-content: center; gap: 10px; }
+        button, input[type="button"] { padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .btn-success { background-color: #5cb85c; color: white; }
+    </style>
+</head>
+<body>
+
+    <div id="bg-particles"></div>
+
+    <div class="main-wrapper">
+        <div class="toggle-section">
+            <span style="font-size: 24px; margin-bottom: 5px;">☾</span>
+            <label class="switch">
+                <input type="checkbox" id="themeToggle" onchange="toggleTheme()">
+                <span class="slider">
+                    <span id="toggleText" class="slider-text">OFF</span>
+                </span>
+            </label>
+        </div>
+
+        <table class="layout-table">
+            <tr>
+                <td class="left-panel">
+                    <h1>User Greeting</h1>
+                    <p>Name: <input type="text" id="userName" placeholder="Enter name"></p>
+                    <div class="button-group">
+                        <input type="button" class="btn-success" onclick="displayName()" value="CLICK ME!">
+                    </div>
+                </td>
+                <td class="right-panel">
+                    <h1>Simple Calculator</h1>
+                    <label>First Number:</label>
+                    <input type="number" id="num1">
+                    <label>Second Number:</label>
+                    <input type="number" id="num2">
+                    <label>Operator:</label>
+                    <select id="operator">
+                        <option value="add">+</option>
+                        <option value="subtract">-</option>
+                        <option value="multiply">*</option>
+                        <option value="divide">/</option>
+                    </select>
+                    <div class="button-group">
+                        <button class="btn-success" onclick="calculate()">Calculate</button>
+                        <button class="btn-success" onclick="resetCalculator()">Reset</button>
+                    </div>
+                    <p style="text-align:center; margin-top:15px;"><b>Result:</b> <span id="calcResult"></span></p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        function createEmber() {
+            const ember = document.createElement('div');
+            ember.classList.add('floating-ember');
+            const size = (Math.random() * 12 + 6) + 'px'; // Slightly larger base size
+            ember.style.width = size;
+            ember.style.height = size;
+            ember.style.left = Math.random() * 100 + 'vw';
+            ember.style.animationDuration = (Math.random() * 3 + 4) + 's'; // Faster movement for visibility
+            document.getElementById('bg-particles').appendChild(ember);
+            setTimeout(() => { ember.remove(); }, 8000);
+        }
+        setInterval(createEmber, 150); // Doubled frequency of generation
+
+        function toggleTheme() {
+            const isChecked = document.getElementById("themeToggle").checked;
+            document.body.classList.toggle("dark-mode", isChecked);
+            document.getElementById("toggleText").innerText = isChecked ? "ON" : "OFF";
+        }
+
+        function displayName() {
+            let name = document.getElementById("userName").value;
+            alert("Hello " + name + "!");
+        }
+
+        function calculate() {
+            const n1 = parseFloat(document.getElementById("num1").value);
+            const n2 = parseFloat(document.getElementById("num2").value);
+            const op = document.getElementById("operator").value;
+            const res = document.getElementById("calcResult");
+            if (isNaN(n1) || isNaN(n2)) { res.innerText = "Error"; return; }
+            let result;
+            if(op === 'add') result = n1 + n2;
+            else if(op === 'subtract') result = n1 - n2;
+            else if(op === 'multiply') result = n1 * n2;
+            else if(op === 'divide') result = n2 !== 0 ? n1 / n2 : "Div/0";
+            res.innerText = result;
+        }
+
+        function resetCalculator() {
+            document.getElementById("num1").value = "";
+            document.getElementById("num2").value = "";
+            document.getElementById("calcResult").innerText = "";
+        }
+    </script>
+</body>
+</html>
