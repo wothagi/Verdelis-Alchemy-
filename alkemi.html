@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Verdélis Alchemy</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins&family=Dancing+Script&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #1c1b22;
+    color: #e0d9c1;
+}
+
+header {
+    background: #2e2a38;
+    padding: 1rem 8%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.logo-main {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.2rem;
+    color: #f9f5d7;
+    text-shadow: 0 0 5px #c7b895, 0 0 10px #c7b895;
+}
+
+.logo-sub {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: #c7b895;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 25px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #e0d9c1;
+    font-weight: 600;
+    transition: 0.3s;
+    position: relative;
+}
+
+nav ul li a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #c7b895;
+    transition: width 0.3s;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+nav ul li a:hover {
+    color: #f2e8c2;
+}
+
+.cart {
+    font-weight: bold;
+    color: #f9f5d7;
+}
+
+.hero {
+    height: 90vh;
+    background: linear-gradient(rgba(28,27,34,0.7), rgba(28,27,34,0.7)),
+    url('https://images.unsplash.com/photo-1584270354949-f9df1f3821a5?q=80&w=1920');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    padding: 0 8%;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 600px;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    color: #f9f5d7;
+    text-shadow: 0 0 10px #c7b895;
+}
+
+.hero-content p {
+    margin: 15px 0;
+    color: #c7b895;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.btn-primary {
+    background: #7b5e57;
+    color: #f9f5d7;
+    box-shadow: 0 0 10px #c7b895;
+}
+
+.btn-primary:hover {
+    background: #5a423a;
+    box-shadow: 0 0 20px #c7b895, 0 0 30px #f9f5d7;
+}
+
+/* Gemini image on right side */
+.gemini-img {
+    position: absolute;
+    right: 8%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 400px; /* increased size */
+    max-width: 30%;
+    border-radius: 20px;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.7);
+    z-index: 1;
+}
+
+section {
+    padding: 80px 8%;
+}
+
+.products {
+    text-align: center;
+}
+
+.products h2 {
+    margin-bottom: 40px;
+    color: #f9f5d7;
+    text-shadow: 0 0 5px #c7b895;
+}
+
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.product-card {
+    background: #2e2a38;
+    padding: 20px;
+    width: 260px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    transition: 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(199,184,149,0.7);
+}
+
+.product-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: 0.5s;
+}
+
+.product-card img:hover {
+    transform: scale(1.05) rotate(-2deg);
+}
+
+.product-card h3 {
+    margin-top: 10px;
+    color: #f9f5d7;
+}
+
+.product-card p {
+    font-size: 0.9rem;
+    color: #c7b895;
+}
+
+.price {
+    margin: 10px 0;
+    font-weight: bold;
+    color: #f2e8c2;
+}
+
+.about, #contacts {
+    background: #1c1b22;
+    text-align: center;
+}
+
+.about h2, #contacts h2 {
+    margin-bottom: 15px;
+    color: #f9f5d7;
+    text-shadow: 0 0 5px #c7b895;
+}
+
+.about p, #contacts p {
+    max-width: 600px;
+    margin: auto;
+    color: #c7b895;
+}
+
+footer {
+    background: #2e2a38;
+    color: #f9f5d7;
+    text-align: center;
+    padding: 20px;
+}
+
+/* subtle particle effect background */
+.hero::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 20px 20px;
+    z-index: 0;
+    animation: moveParticles 20s linear infinite;
+}
+
+@keyframes moveParticles {
+    from {background-position: 0 0;}
+    to {background-position: 400px 400px;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <div class="logo">
+            <span class="logo-main">Verdélis</span>
+            <span class="logo-sub">ACAIN</span>
+        </div>
+
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contacts">Contact</a></li>
+            <li><a href="#">Account</a></li>
+        </ul>
+
+        <div class="cart">
+            Cart: <span id="cart-count">0</span>
+        </div>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Verdélis Alchemy</h1>
+        <p>Discover mystical herbs, minerals, and essential alchemical tools for your craft.</p>
+        <a href="#products" class="btn btn-primary">Explore Now</a>
+    </div>
+    <img src="gemini.png" alt="Gemini" class="gemini-img">
+</section>
+
+<section class="products" id="products">
+    <h2>Our Alchemical Collection</h2>
+    <div class="product-grid">
+        <!-- Product cards remain the same -->
+        <div class="product-card">
+            <img src="lead_ingots.jpg" alt="Lead Ingots">
+            <h3>Lead Ingots</h3>
+            <p>Refined lead for transmutation experiments.</p>
+            <div class="price">₱2,000</div>
+            <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="mercury.webp" alt="Mercury">
+            <h3>Mercury</h3>
+            <p>Liquid silver metal essential for elixirs.</p>
+            <div class="price">₱3,500</div>
+            <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="sulfur_crystal.png" alt="Sulfur Crystal">
+            <h3>Sulfur Crystal</h3>
+            <p>Bright yellow crystals for fiery concoctions.</p>
+            <div class="price">₱1,200</div>
+            <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="vitriol.webp" alt="Vitriol">
+            <h3>Vitriol</h3>
+            <p>Corrosive substance for experimental alchemy.</p>
+            <div class="price">₱2,800</div>
+            <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="orpiment.jpg" alt="Orpiment">
+            <h3>Orpiment</h3>
+            <p>Rare yellow mineral used in mystical practices.</p>
+            <div class="price">₱1,800</div>
+            <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="mandrake_root.jpg" alt="Mandrake Root">
+            <h3>Mandrake Root</h3>
+            <p>Mystical herb with potent magical properties.</p>
+            <div class="price">₱2,300</div>
+            <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="belladonna.jpg" alt="Belladonna">
+            <h3>Belladonna</h3>
+            <p>Poisonous herb, handle with care in your experiments.</p>
+            <div class="price">₱2,100</div>
+            <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="sage.webp" alt="Sage">
+            <h3>Sage</h3>
+            <p>Herb for purification and mystical rituals.</p>
+            <div class="price">₱800</div>
+            <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="lavender.webp" alt="Lavender">
+            <h3>Lavender</h3>
+            <p>Calming herb for potions and aromatherapy.</p>
+            <div class="price">₱900</div>
+            <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="alembic.jpg" alt="Alembic">
+            <h3>Alembic</h3>
+            <p>Distillation apparatus for alchemical experiments.</p>
+            <div class="price">₱4,000</div>
+            <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="crucible.jpg" alt="Crucible">
+            <h3>Crucible</h3>
+            <p>Essential tool for heating and melting ingredients safely.</p>
+            <div class="price">₱3,200</div>
+            <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+        </div>
+    </div>
+</section>
+
+<section class="about" id="about">
+    <h2>About Verdélis Alchemy</h2>
+    <p>
+        Verdélis ACAIN brings the essence of old-world alchemy to your hands.  
+        Explore rare herbs, minerals, and mystical items carefully curated for your magical and experimental needs.
+    </p>
+</section>
+
+<section id="contacts">
+    <h2>Contact Us</h2>
+    <p>Email: verdelis.acain@alchemy.com</p>
+    <p>Phone: +63 912 345 6789</p>
+</section>
+
+<footer>
+    <p>© 2026 Verdélis Alchemy | ACAIN</p>
+</footer>
+
+<script>
+let cartCount = 0;
+function addToCart() {
+    cartCount++;
+    document.getElementById("cart-count").innerText = cartCount;
+}
+</script>
+
+</body>
+</html>
